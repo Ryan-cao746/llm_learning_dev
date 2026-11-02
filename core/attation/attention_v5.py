@@ -24,7 +24,7 @@ class SelfAttentionV2(torch.nn.Module):
         values = self.W_value(x)
         queries = self.W_query(x)
 
-        attn_scores = queries @ keys.T
+        attn_scores = queries @ keys.T  # 这个scores矩阵是d_in行d_in列的
         attn_weights = torch.softmax(attn_scores / keys.shape[-1]**0.5, dim=-1)
 
         context_vec = attn_weights @ values
